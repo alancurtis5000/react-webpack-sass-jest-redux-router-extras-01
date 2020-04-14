@@ -1,39 +1,63 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeText } from '../actions/pageTest';
+import { updateForm } from '../actions/pageTest';
 import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map'
 import moment from 'moment';
+import InputBasic from './InputBasic';
 
-class PageTest extends Component {
-  constructor(props){
-    super(props);
-  }
 
-  handleOnClick = () => {
-    console.log("handleOnClick");
-    this.props.changeText("cheese")
+
+const PageTest = (props) => {
+
+  const handleOnClick = () => {
+    // console.log("handleOnClick");
   };
   
-  logProps = () => {
-    console.log({props:this.props});
-    console.log(isEmpty({}))
-    console.log(moment())
+  const logProps = () => {
+    console.log({props:props});
   }
 
-  render() {
+  const renderInputs = () => {
+    const inputs = map( props.form, (key,i)=>{
+      const { label, type, id, placeholder, errors, value} = key;
+      return (
+        <InputBasic 
+          key={i}
+          label={label}
+          type={type}
+          id={id}
+          errors={errors}
+          placeholder={placeholder}
+          value={value}
+          handleOnChange={(e)=>props.updateForm(id, e.target.value)}
+        />
+      )
+    })
+    return inputs;
+  }
+
     return (
       <div style={{display:"flex", justifyContent:"center", flexDirection:'column'}} >
         <h2>React PageTest!</h2>
 
         <div style={{display:"flex"}}>
-          <button onClick={this.handleOnClick}>test click</button>
-          <button onClick={this.logProps}>log props</button>
+          <button onClick={handleOnClick}>test click</button>
+          <button onClick={logProps}>log props</button>
         </div>
 
-        <div style={{display:"flex", justifyContent:"center", flexDirection:'column', width:'300px', margin:"auto"}}>
-            
-          <label htmlFor="firstName">First Name</label>
-          <input type="text" className="firstName" id="firstName"/>
+        <div className="form" style={{display:"flex", justifyContent:"center", flexDirection:'column', width:'300px', margin:"auto"}}>
+          {renderInputs()}
+          <input type="button" value="Submit"/>
+          {/*  
+          <label htmlFor="firstName1">First Name</label>
+          <input type="text" className="firstName1" id="firstName1"/>
+
+          <InputBasic  label="First Name" id="firstName" type="text"/>
+          <InputBasic  label="Last Name" id="lastName" type="text"/>
+          <InputBasic  label="Email" id="email" type="email"/>
+          <InputBasic  label="Phone" id="phone" type="tel"/>
+
 
           <label htmlFor="lastName">Last Name</label>
           <input type="text" className="lastName" id="lastName"/>
@@ -45,7 +69,7 @@ class PageTest extends Component {
           <input type="tel" className="phone" id="phone"/>
 
           <label htmlFor="comment">Comment</label>
-          <textarea className="comment" id="comment" cols="30" rows="10" maxlength="50"></textarea>
+          <textarea className="comment" id="comment" cols="30" rows="10" maxLength="50"></textarea>
           <div className="textarea-limit">{`${50}/${50} characters`}</div>
 
           <label htmlFor="age">Age</label>
@@ -53,7 +77,6 @@ class PageTest extends Component {
 
           <label htmlFor="startDate">Start Date</label>
           <input type="date" id="startDate"
-            value="2018-07-22"
             min="2018-01-01" 
             max="2018-12-31">
           </input>
@@ -61,18 +84,22 @@ class PageTest extends Component {
           <div>drop down</div>
           <div> input with type ahead and drop down</div>
           <input type="button" value="Submit"/>
+          */}
+          <div>drop down</div>
+          <div> input with type ahead and drop down</div>
+
         </div>
       </div>
     )
-  }
 }
 
 const mapDispatchToProps = {
-  changeText
+  updateForm
 }
 
 function mapStateToProps(state) {
   return {
+    form: state.pageTest,
     redux: state
   }
 }

@@ -1,23 +1,24 @@
 import { 
-  CHANGE_TEXT
+  CHANGE_TEXT,
+  UPDATE_FORM
  } from '../actions/pageTest';
 
 const initalState = {
-  text:'',
-  form:{
-    firstName:{value:'', errors:[]},
-    lastName:{value:'', errors:[]},
-    email:{value:'', errors:[]},
-    phone:{value:'', errors:[]},
-    age:{value:0, errors:[]},
-    date:{value:0, errors:[]}
-  },
+  firstName:{value:'', errors:[], type:'text', label:'First Name', id:'firstName', placeholder:''},
+  lastName:{value:'', errors:[], type:'text', label:'Last Name', id:'lastName', placeholder:''},
+  email:{value:'', errors:[], type:'text', label:'Email', id:'email', placeholder:''},
+  phone:{value:'', errors:[], type:'tel', label:'Phone', id:'phone', placeholder:''},
+  age:{value:0, errors:[], type:'number', label:'Age', id:'age', placeholder:''},
+  date:{value:0, errors:[], type:'date', label:'Date', id:'date', placeholder:''}
 }
 
 export default (state = initalState, action) => {
   switch (action.type) {
     case CHANGE_TEXT:
-        return  {...state, ...action.payload};
+      return  {...state, ...action.payload};
+    case UPDATE_FORM:
+      const obj =  { ...state[action.payload.id], ["value"]:action.payload.value }
+      return  {...state, [action.payload.id]:obj };
     default:
       return state;
   }
