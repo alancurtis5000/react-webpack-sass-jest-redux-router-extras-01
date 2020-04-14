@@ -1,0 +1,7 @@
+.InputBasic {
+  display: flex;
+  flex-direction: column;
+  ::placeholder {
+    color: $placeholder;
+  }
+}
