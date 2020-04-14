@@ -1,15 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
-import NotFoundPage from '../components/NotFoundPage';
-import StyleGuidePage from '../components/StyleGuidePage';
-import TestPage from '../components/TestPage';
+import PageNotFound from '../components/PageNotFound';
+import PageStyleGuide from '../components/PageStyleGuide';
+import PageTest from '../components/PageTest';
 
 const AppRouter = () => (
   <BrowserRouter >
     <Switch>
-      <Route path="/" exact component={TestPage}/>
-      <Route path="/style" component={StyleGuidePage}/>
-      <Route component={NotFoundPage} />
+      <Route path="/" exact component={PageTest}/>
+      <Route path="/style" component={PageStyleGuide}/>
+      <Route component={PageNotFound} />
     </Switch>
   </BrowserRouter>
 );

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { changeText } from '../actions/testPage';
 import isEmpty from 'lodash/isEmpty';
 
-class TestPage extends Component {
+class PageTest extends Component {
   constructor(props){
     super(props);
   }
@@ -21,7 +21,7 @@ class TestPage extends Component {
   render() {
     return (
       <div>
-        <h1>React TestPage!</h1>
+        <h1>React PageTest!</h1>
         <button onClick={this.handleOnClick}>test click</button>
         <button onClick={this.logProps}>log props</button>
       </div>
@@ -39,4 +39,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TestPage);
+export default connect(mapStateToProps, mapDispatchToProps)(PageTest);
