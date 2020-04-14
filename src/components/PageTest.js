@@ -22,10 +22,13 @@ class PageTest extends Component {
 
   render() {
     return (
-      <div>
-        <h1>React PageTest!</h1>
-        <button onClick={this.handleOnClick}>test click</button>
-        <button onClick={this.logProps}>log props</button>
+      <div style={{display:"flex", justifyContent:"center", flexDirection:'column'}} >
+        <h2>React PageTest!</h2>
+
+        <div style={{display:"flex"}}>
+          <button onClick={this.handleOnClick}>test click</button>
+          <button onClick={this.logProps}>log props</button>
+        </div>
 
         <div style={{display:"flex", justifyContent:"center", flexDirection:'column', width:'300px', margin:"auto"}}>
             
@@ -42,7 +45,8 @@ class PageTest extends Component {
           <input type="tel" className="phone" id="phone"/>
 
           <label htmlFor="comment">Comment</label>
-          <textarea className="comment" id="comment" cols="30" rows="10"></textarea>
+          <textarea className="comment" id="comment" cols="30" rows="10" maxlength="50"></textarea>
+          <div className="textarea-limit">{`${50}/${50} characters`}</div>
 
           <label htmlFor="age">Age</label>
           <input type="number" className="age" id="age" min="1" max="130"/>
@@ -53,9 +57,10 @@ class PageTest extends Component {
             min="2018-01-01" 
             max="2018-12-31">
           </input>
-          
+
           <div>drop down</div>
           <div> input with type ahead and drop down</div>
+          <input type="button" value="Submit"/>
         </div>
       </div>
     )
