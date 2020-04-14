@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -48,6 +49,7 @@ module.exports = (env) => {
       ]
     },
     plugins:[
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
       MiniCssExtract,
       Analyze
     ],
