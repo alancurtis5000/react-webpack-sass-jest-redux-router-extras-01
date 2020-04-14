@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeText } from '../actions/testPage';
+import { changeText } from '../actions/pageTest';
 import isEmpty from 'lodash/isEmpty';
+import moment from 'moment';
 
 class PageTest extends Component {
   constructor(props){
@@ -16,6 +17,7 @@ class PageTest extends Component {
   logProps = () => {
     console.log({props:this.props});
     console.log(isEmpty({}))
+    console.log(moment())
   }
 
   render() {
