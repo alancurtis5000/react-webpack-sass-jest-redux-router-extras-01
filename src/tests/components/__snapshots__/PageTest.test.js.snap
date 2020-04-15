@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render PageTest correctly 1`] = `
+<PageTest
+  validateForm={[MockFunction]}
+>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <h2>
+      React PageTest!
+    </h2>
+    <div
+      style={
+        Object {
+          "display": "flex",
+        }
+      }
+    >
+      <button
+        onClick={[Function]}
+      >
+        test click
+      </button>
+      <button
+        onClick={[Function]}
+      >
+        log props
+      </button>
+    </div>
+    <div
+      className="form"
+      style={
+        Object {
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": "auto",
+          "width": "300px",
+        }
+      }
+    >
+      <input
+        className="tester-input"
+        type="text"
+      />
+      <label
+        htmlFor="comment"
+      >
+        Comment
+      </label>
+      <textarea
+        className="comment"
+        cols="30"
+        id="comment"
+        maxLength="50"
+        rows="10"
+      />
+      <div
+        className="textarea-limit"
+      >
+        50/50 characters
+      </div>
+      <div>
+        drop down
+      </div>
+      <div>
+         input with type ahead and drop down
+      </div>
+      <input
+        className="submit-button"
+        onClick={[Function]}
+        type="button"
+        value="Submit"
+      />
+    </div>
+  </div>
+</PageTest>
+`;

@@ -5,6 +5,7 @@ const InputBasic = (props) => (
   <div className="InputBasic">
     <label htmlFor={props.id}>{props.label}</label>
     <input 
+      className={props.id}
       type={props.type} 
       id={props.id} 
       onChange={props.handleOnChange} 
