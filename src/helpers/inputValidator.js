@@ -1,8 +1,8 @@
 
 // error messages
-const errorRequiredField = 'Required Field';
-const errorRequiredSymbolAt = 'Needs "@" symbol for email';
-const errorRequiredSymbolPeriod = 'Needs "." symbol for email';
+export const errorRequiredField = 'Required Field';
+export const errorRequiredSymbolAt = 'Needs "@" symbol for email';
+export const errorRequiredSymbolPeriod = 'Needs "." symbol for email';
 
 export const isEmail = ( email ) => {
   const errors = [];

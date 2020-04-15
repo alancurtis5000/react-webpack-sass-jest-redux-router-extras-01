@@ -1,9 +1,10 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import cloneDeep from 'lodash/cloneDeep'
+import forms from '../fixtures/forms';
 import { 
   updateForm,
-  clearForm
+  clearForm,
+  validateForm
 } from '../../actions/pageTest';
 import pageTestReducer, { initalState } from '../../reducers/pageTest';
 
@@ -15,19 +16,27 @@ test('should clear form', ()=>{
   expect(action).toEqual({
     type: 'CLEAR_FORM',
     payload: {} 
-  })
+  });
 });
 
 test('should update form', () => {
-  const id = 'firstName'
-  const value = 'Charlie'
+  const id = forms.firstName.firstName.id;
+  const value = forms.firstName.firstName.value;
   const action = updateForm(id, value);
 
   const state = pageTestReducer(initalState, action);
-  let expectedState = cloneDeep(initalState);
-  
-  const obj =  { ...expectedState[action.payload.id], ["value"]:action.payload.value }
-  expectedState =  {...expectedState, [action.payload.id]:obj };
+  expect(state).toEqual(forms.firstName);
+});
 
-  expect(state).toEqual(expectedState);
+test('valid form should reset to default', ()=>{
+  const action = validateForm(forms.validForm);
+  const state = pageTestReducer(initalState, action);
+  expect(state).toEqual(initalState);
+});
+
+test('invalid form should get set errors', ()=>{
+  const action = validateForm(forms.invalidForm);
+  const state = pageTestReducer(initalState, action);
+
+  expect(state).toEqual(forms.invalidFormExpected);
 });
