@@ -18,12 +18,25 @@ export const updateForm = ( id, value ) => {
 };
 
 export const CLEAR_FORM = "CLEAR_FORM";
+export const clearForm = () => {
+  return {
+    type: CLEAR_FORM,
+    payload: {}
+  }
+}
+
 export const SET_ERRORS = "SET_ERRORS";
+export const setErrors = ( newForm ) => {
+  return {
+    type: SET_ERRORS,
+    payload: newForm
+  }
+}
+
 export const validateForm = ( form ) => {
   form = cloneDeep(form);
   let isValid = true;
   let newForm = {}
-
   forEach(form, (input)=>{
     if(input.required){
       input.errors = isRequired(input.value);
@@ -42,15 +55,8 @@ export const validateForm = ( form ) => {
   });
 
   if( isValid ){
-    return {
-      type: CLEAR_FORM,
-      payload: {}
-    }
+    return clearForm();
   } else {
-    return {
-      type: SET_ERRORS,
-      payload: newForm
-    }
+    return setErrors( newForm );
   }
-
 };

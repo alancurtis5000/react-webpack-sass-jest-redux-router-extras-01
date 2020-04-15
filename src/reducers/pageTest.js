@@ -5,7 +5,7 @@ import {
   SET_ERRORS
  } from '../actions/pageTest';
 
-const initalState = {
+export const initalState = {
   firstName:{value:'', errors:[], type:'text', label:'First Name', id:'firstName', placeholder:'', required:true},
   lastName:{value:'', errors:[], type:'text', label:'Last Name', id:'lastName', placeholder:'',  required:false},
   email:{value:'', errors:[], type:'email', label:'Email', id:'email', placeholder:'', required:true},
