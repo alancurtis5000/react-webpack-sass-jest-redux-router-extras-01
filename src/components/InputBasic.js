@@ -9,6 +9,7 @@ const InputBasic = (props) => (
       id={props.id} 
       onChange={props.handleOnChange} 
       placeholder={props.placeholder}
+      value={props.value}
     />
     {props.errors.map((error, i)=>(<div key={i} className="error" >{error}</div>))}
   </div>
