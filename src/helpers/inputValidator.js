@@ -1,4 +1,4 @@
-
+import forEach from 'lodash/forEach';
 // error messages
 export const errorRequiredField = 'Required Field';
 export const errorRequiredSymbolAt = 'Needs "@" symbol for email';
@@ -26,4 +26,18 @@ export const isRequired = ( value ) => {
     errors.push(errorRequiredField);
   }
   return errors;
+}
+
+export const isNewUserValid = ( newUser ) => {
+  let validation = {
+    isValid:false,
+    errors:[]
+  }
+
+  forEach(newUser, (input)=>{
+    console.log(input)
+  });
+
+
+  return validation
 }
