@@ -17,7 +17,7 @@ export const isEmail = ( email ) => {
   if ( !email.includes(".") ) {
     errors.push(errorRequiredSymbolPeriod);
   } 
-  return errors > 0 ? errors: null;
+  return errors;
 }
 
 export const isRequired = ( value ) => {
@@ -30,17 +30,20 @@ export const isRequired = ( value ) => {
 
 export const isNewUserValid = ( newUser ) => {
   let validation = {
-    isValid:false,
-    errors:[]
+    isValid:true,
+    newUser:{...newUser}
   }
 
   forEach(newUser, (input)=>{
+    let errors = []
     console.log(input)
     if(input.key === 'email'){
-      console.log(isEmail(input.value));
+      console.log("here",isEmail(input.value));
+      errors = isEmail(input.value);
+      input.errors = errors;
+      validation.isValid = errors.length > 0 ? false: validation.isValid ;
     }
   });
-
 
   return validation
 }

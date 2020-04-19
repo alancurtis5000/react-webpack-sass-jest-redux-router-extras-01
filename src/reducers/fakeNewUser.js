@@ -1,6 +1,7 @@
 import { 
   UPDATE_FAKE_NEW_USER_INPUT,
-  CLEAR_FAKE_NEW_USER_INPUT
+  CLEAR_FAKE_NEW_USER_INPUT,
+  SET_ERRORS_FAKE_NEW_USER_INPUT
  } from '../actions/fakeNewUser';
 
 export const initalState = {
@@ -13,6 +14,8 @@ export default (state = initalState, action) => {
     case UPDATE_FAKE_NEW_USER_INPUT:
       return  {...state, ...action.payload};
     case CLEAR_FAKE_NEW_USER_INPUT:
+      return  {...state, ...action.payload};
+    case SET_ERRORS_FAKE_NEW_USER_INPUT:
       return  {...state, ...action.payload};
     default:
       return state;

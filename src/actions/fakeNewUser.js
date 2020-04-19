@@ -2,9 +2,12 @@
 import { store } from '../index';
 import cloneDeep from 'lodash/cloneDeep';
 import {initalState} from '../reducers/fakeNewUser';
+import {addNewFakeUserToUsers} from './fakeUsers';
+import { isNewUserValid } from '../helpers/inputValidator';
 
 export const UPDATE_FAKE_NEW_USER_INPUT = "UPDATE_FAKE_NEW_USER_INPUT";
 export const CLEAR_FAKE_NEW_USER_INPUT = "CLEAR_FAKE_NEW_USER_INPUT";
+export const SET_ERRORS_FAKE_NEW_USER_INPUT = "SET_ERRORS_FAKE_NEW_USER_INPUT";
 
 export const updateFakeNewUserInput = ( e ) => {
   let state = cloneDeep(store.getState().fakeNewUser);
@@ -19,7 +22,6 @@ export const updateFakeNewUserInput = ( e ) => {
   };
 }
 
-
 export const clearFakeNewUserInput = ( ) => {
   let state = initalState;
   return {
@@ -28,18 +30,28 @@ export const clearFakeNewUserInput = ( ) => {
   };
 }
 
+export const setErrorsFakeNewUserInput = ( newUser ) => {
+  return {
+    type: SET_ERRORS_FAKE_NEW_USER_INPUT,
+    payload: newUser
+  };
+}
+
 export const startAddFakeNewUser = ( fakeNewUser ) => {
   let state = initalState;
-  // if valid 
-  //// add new user to users array
-  //// clear data from fake new user input
-  // else 
-  //// keep values 
-  //// add errors
-  console.log("startAddFakeUser")
+  let validator = isNewUserValid(fakeNewUser);
+  console.log("run is valid",isNewUserValid(fakeNewUser))
 
+
+  if( validator.isValid ){
+    store.dispatch(addNewFakeUserToUsers(fakeNewUser));
+    store.dispatch(clearFakeNewUserInput());
+  } else {
+    store.dispatch(setErrorsFakeNewUserInput());
+  }
+  // TODO need to get rid of this  useless return
   return {
-    type: CLEAR_FAKE_NEW_USER_INPUT,
+    type: "C",
     payload: state
   };
 }

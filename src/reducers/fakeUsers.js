@@ -11,7 +11,7 @@ export default (state = initalState, action) => {
   let cloneState = cloneDeep(state);
   switch (action.type) {
     case ADD_NEW_FAKE_USER_TO_USERS:
-      return {...cloneState, ...action.payload}
+      return [...cloneState, action.payload]
     default:
       return state;
   }
