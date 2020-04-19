@@ -40,8 +40,6 @@ export const setErrorsFakeNewUserInput = ( newUser ) => {
 export const startAddFakeNewUser = ( fakeNewUser ) => {
   let state = initalState;
   let validator = isNewUserValid(fakeNewUser);
-  console.log("run is valid",isNewUserValid(fakeNewUser))
-
 
   if( validator.isValid ){
     store.dispatch(addNewFakeUserToUsers(fakeNewUser));

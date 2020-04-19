@@ -36,9 +36,7 @@ export const isNewUserValid = ( newUser ) => {
 
   forEach(newUser, (input)=>{
     let errors = []
-    console.log(input)
     if(input.key === 'email'){
-      console.log("here",isEmail(input.value));
       errors = isEmail(input.value);
       input.errors = errors;
       validation.isValid = errors.length > 0 ? false: validation.isValid ;
