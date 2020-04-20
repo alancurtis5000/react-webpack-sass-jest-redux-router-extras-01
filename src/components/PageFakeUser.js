@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {   } from '../actions/fakeUsers';
-import { updateFakeNewUserInput , startAddFakeNewUser } from '../actions/fakeNewUser';
+import {  startAddFakeNewUserToUsers } from '../actions/fakeUsers';
+import { updateFakeNewUserInput  } from '../actions/fakeNewUser';
 import map from 'lodash/map';
 import InputBasic from './InputBasic';
 
@@ -17,7 +17,7 @@ export const PageFakeUser = (props) => {
       <InputBasic label={"Name"} value={name.value} id={"name"} type={'text'} errors={name.errors} handleOnChange={props.updateFakeNewUserInput}/>
       <InputBasic label={"Email"} value={email.value} id={"email"} type={'email'} errors={email.errors} handleOnChange={props.updateFakeNewUserInput}/>
       <button onClick={()=>console.log(props)}>Log</button> 
-      <button onClick={()=>props.startAddFakeNewUser(props.fakeNewUser)}>Add New User</button> 
+      <button onClick={()=>props.startAddFakeNewUserToUsers(props.fakeNewUser)}>Add New User</button> 
       <div className="user-list">
         {renderUsers()}
       </div>
@@ -27,7 +27,7 @@ export const PageFakeUser = (props) => {
 
 const mapDispatchToProps = {
   updateFakeNewUserInput,
-  startAddFakeNewUser
+  startAddFakeNewUserToUsers
 };
 
 function mapStateToProps(state) {
