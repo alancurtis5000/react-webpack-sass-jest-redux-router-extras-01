@@ -1,4 +1,3 @@
-import cloneDeep from 'lodash/cloneDeep';
 import { 
   ADD_NEW_FAKE_USER_TO_USERS
  } from '../actions/fakeUsers';
