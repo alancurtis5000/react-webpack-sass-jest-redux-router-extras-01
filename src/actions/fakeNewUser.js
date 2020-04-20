@@ -38,18 +38,18 @@ export const setErrorsFakeNewUserInput = ( newUser ) => {
 }
 
 export const startAddFakeNewUser = ( fakeNewUser ) => {
-  let state = initalState;
-  let validator = isNewUserValid(fakeNewUser);
-
-  if( validator.isValid ){
-    store.dispatch(addNewFakeUserToUsers(fakeNewUser));
-    store.dispatch(clearFakeNewUserInput());
-  } else {
-    store.dispatch(setErrorsFakeNewUserInput());
-  }
+  store.dispatch((dispatch)=>{
+    let validator = isNewUserValid(fakeNewUser);
+    if( validator.isValid ){
+      dispatch(addNewFakeUserToUsers(fakeNewUser));
+      dispatch(clearFakeNewUserInput());
+    } else {
+      dispatch(setErrorsFakeNewUserInput());
+    }
+  });
   // TODO need to get rid of this  useless return
   return {
     type: "C",
-    payload: state
+    payload: {}
   };
 }
