@@ -6,7 +6,7 @@ export const initalState = [
   //{name:'Mike', email:'Mike@email.com'}
 ]
 
-export default (state = initalState, action) => {
+const fakeUsersReducer = (state = initalState, action) => {
   switch (action.type) {
     case ADD_NEW_FAKE_USER_TO_USERS:
       return [...state, action.payload]
@@ -14,3 +14,5 @@ export default (state = initalState, action) => {
       return state;
   }
 };
+
+export default fakeUsersReducer;
