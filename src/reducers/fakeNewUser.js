@@ -10,7 +10,7 @@ export const initalState = {
   email:{key:'email', value:'', errors:[]}
 }
 
-export default (state = initalState, action) => {
+const fakeNewUserReducer = (state = initalState, action) => {
   let updatedState = cloneDeep(state);
   switch (action.type) {
     case UPDATE_FAKE_NEW_USER_INPUT:
@@ -24,3 +24,5 @@ export default (state = initalState, action) => {
       return state;
   }
 };
+
+export default fakeNewUserReducer;
