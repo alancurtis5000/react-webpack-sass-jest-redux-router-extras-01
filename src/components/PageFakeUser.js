@@ -6,10 +6,13 @@ import map from 'lodash/map';
 import InputBasic from './InputBasic';
 
 export const PageFakeUser = (props) => {
+
+  const handleAddNewUser = ( ) =>{
+    props.startAddFakeNewUserToUsers(props.fakeNewUser);
+  }
   const renderUsers = () => {
     return map( props.fakeUsers, (user, i)=>( <div className="user" key={i}> {user.name} </div>));
   };
-
 
   const { name, email } = props.fakeNewUser
   return (
@@ -17,7 +20,7 @@ export const PageFakeUser = (props) => {
       <InputBasic label={"Name"} value={name.value} id={"name"} type={'text'} errors={name.errors} handleOnChange={props.updateFakeNewUserInput}/>
       <InputBasic label={"Email"} value={email.value} id={"email"} type={'email'} errors={email.errors} handleOnChange={props.updateFakeNewUserInput}/>
       <button onClick={()=>console.log(props)}>Log</button> 
-      <button onClick={()=>props.startAddFakeNewUserToUsers(props.fakeNewUser)}>Add New User</button> 
+      <button onClick={handleAddNewUser}>Add New User</button> 
       <div className="user-list">
         {renderUsers()}
       </div>
@@ -25,10 +28,6 @@ export const PageFakeUser = (props) => {
   )
 }
 
-const mapDispatchToProps = {
-  updateFakeNewUserInput,
-  startAddFakeNewUserToUsers
-};
 
 function mapStateToProps(state) {
   return {
@@ -36,5 +35,11 @@ function mapStateToProps(state) {
     fakeNewUser: state.fakeNewUser
   };
 };
+
+const mapDispatchToProps = (dispatch)=>({
+  updateFakeNewUserInput: (e) => dispatch(updateFakeNewUserInput(e)),
+  startAddFakeNewUserToUsers: ( fakeNewUser ) => dispatch(startAddFakeNewUserToUsers(fakeNewUser)),
+  dispatch
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PageFakeUser);

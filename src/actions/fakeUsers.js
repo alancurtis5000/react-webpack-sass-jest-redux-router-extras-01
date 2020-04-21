@@ -1,6 +1,5 @@
 import {clearFakeNewUserInput, setErrorsFakeNewUserInput} from './fakeNewUser';
 import { isNewUserValid } from '../helpers/inputValidator';
-import { store } from '../index';
 
 export const ADD_NEW_FAKE_USER_TO_USERS = "ADD_NEW_FAKE_USER_TO_USERS";
 
@@ -15,20 +14,14 @@ export const addFakeNewUserToUsers = (newUser) => {
   };
 } 
 
-export const startAddFakeNewUserToUsers = ( fakeNewUser ) => {
-  store.dispatch((dispatch)=>{
-    let validator = isNewUserValid(fakeNewUser);
-    if( validator.isValid ){
-      dispatch(addFakeNewUserToUsers(fakeNewUser));
-      dispatch(clearFakeNewUserInput());
-    } else {
-      dispatch(setErrorsFakeNewUserInput(fakeNewUser));
-      console.log("errors")
+export const startAddFakeNewUserToUsers = (fakeNewUser) => {
+  let validator = isNewUserValid(fakeNewUser);
+  if( validator.isValid ){
+    return dispatch => {
+      dispatch(addFakeNewUserToUsers(fakeNewUser)),
+      dispatch(clearFakeNewUserInput())
     }
-  });
-  // TODO need to get rid of this  useless return
-  return {
-    type: "C",
-    payload: {}
-  };
+  } else {
+    return dispatch => dispatch(setErrorsFakeNewUserInput(fakeNewUser));
+  }
 }
