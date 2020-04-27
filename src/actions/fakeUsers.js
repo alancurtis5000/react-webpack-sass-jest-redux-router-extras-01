@@ -17,10 +17,12 @@ export const addFakeNewUserToUsers = (newUser) => {
 export const startAddFakeNewUserToUsers = (fakeNewUser) => {
   let validator = isNewUserValid(fakeNewUser);
   if( validator.isValid ){
-    return dispatch => {
+    const test = dispatch => {
       dispatch(addFakeNewUserToUsers(fakeNewUser)),
       dispatch(clearFakeNewUserInput())
     }
+    console.log({test})
+    return  test
   } else {
     return dispatch => dispatch(setErrorsFakeNewUserInput(fakeNewUser));
   }
