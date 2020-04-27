@@ -25,7 +25,9 @@ const users_controller = require('./controllers/users_controller');
 
 // Endpoints.
 app.get('/api/test', test_controller.get);
+
 app.get('/api/users', users_controller.get);
+app.post('/api/users', users_controller.post);
 
 // Run Server.
 app.listen(port, ()=>console.log(`running on port: ${port}`));
