@@ -1,15 +1,29 @@
-const path = require('path');
-const express = require('express');
+require('dotenv').config();
+const express= require('express');
 const app = express();
-const publicPath = path.join(__dirname, '..', 'public');
-const port = process.env.PORT || 3000;
+const cors = require('cors')
+const port = process.env.PORT || 9090;
 
-app.use(express.static(publicPath));
+// Destructure env file.
+// const {SERVER_PORT} = process.env;
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(publicPath, 'index.html'));
-});
+// Connect to Database.
+// use massive
 
-app.listen(port, () => {
-  console.log('Server is up!');
-});
+// Middleware import.
+const bodyParser= require('body-parser');
+
+// Top Level Middleware.
+app.use( express.static( `${__dirname}/../build` ) );
+app.use(cors());
+app.use(bodyParser.json());
+
+
+// Controller imports.
+const test_controller = require('./controllers/test_controller');
+
+// Endpoints.
+app.get('/api/test', test_controller.get);
+
+// Run Server.
+app.listen(port, ()=>console.log(`running on port: ${port}`));

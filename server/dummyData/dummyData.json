@@ -1,0 +1,43 @@
+{
+    "intro": {
+      "navText": "Paint Your Pixture",
+      "header": [{
+        "id": 0,
+        "backgroundImage": "background1.jpg",
+        "title": "Humble Beginings",
+        "logo": "logo.png",
+        "description": {
+          "name": "Est Schlitz shoreditch fashion axe",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis et quam et pharetra. Vestibulum fringilla placerat finibus. Sed eget bibendum ante."
+        }
+      }]
+    },
+    "images": {
+      "slides": [{
+           "id": 0,
+           "image": "image4.jpg",
+           "title": "Bliss Texture",
+           "description": "Salami jowl corned beef, andouille flank tongue ball tip kielbasa."
+         },
+         {
+           "id": 1,
+           "image": "image5.jpg",
+           "title": "Decayed",
+           "description": "Steak fatback meatball shoulder leberkas pastrami sausage."
+         },
+         {
+           "id": 2,
+           "image": "image6.jpg",
+           "title": "Bliss Texture",
+           "description": "Degrees plato units of bitterness, cask conditioned ale ibu real ale pint glass craft beer."
+         },
+         {
+           "id": 3,
+           "image": "image3.jpg",
+           "title": "Decayed",
+           "description": "lack malt chocolate malt balthazar gravity dextrin saccharification trappist final gravity."
+         }]
+   },
+   "list":["thing one", "thing Two", "thing three", "four", "five"]
+  }
+  
