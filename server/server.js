@@ -21,9 +21,11 @@ app.use(bodyParser.json());
 
 // Controller imports.
 const test_controller = require('./controllers/test_controller');
+const users_controller = require('./controllers/users_controller');
 
 // Endpoints.
 app.get('/api/test', test_controller.get);
+app.get('/api/users', users_controller.get);
 
 // Run Server.
 app.listen(port, ()=>console.log(`running on port: ${port}`));
