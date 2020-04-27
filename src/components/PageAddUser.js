@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { startGetUsers } from '../actions/users';
 
 export const PageAddUser = (props) => {
   const handlePingServer=()=>{
@@ -10,6 +11,10 @@ export const PageAddUser = (props) => {
     });
   }
 
+  const handleAddUser=()=>{
+    props.startGetUsers();
+  };
+
   return (
     <div className="PageAddUser" style={{display:"flex", flexDirection:"column", maxWidth:"200px", margin:"auto"}}>
       PageAddUser
@@ -17,7 +22,8 @@ export const PageAddUser = (props) => {
       <input type="text" className="name"/>
 
 
-      <button onClick={handlePingServer}>Add User</button>
+      <button onClick={handleAddUser}>Add User</button>
+      <button onClick={()=>console.log(props)}>LogProps</button>
       <button onClick={handlePingServer}>Ping server</button>
     </div>
   )
@@ -30,8 +36,7 @@ function mapStateToProps(state) {
 };
 
 const mapDispatchToProps = (dispatch)=>({
-  // updateFakeNewUserInput: (e) => dispatch(updateFakeNewUserInput(e)),
-  // startAddFakeNewUserToUsers: ( fakeNewUser ) => dispatch(startAddFakeNewUserToUsers(fakeNewUser)),
+  startGetUsers: () => dispatch(startGetUsers()),
   dispatch
 });
 
