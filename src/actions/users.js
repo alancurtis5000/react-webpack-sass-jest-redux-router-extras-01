@@ -3,8 +3,8 @@ import axios from 'axios'
 export const startGetUsers = () => {
   return dispatch => {
     dispatch(getUsersRequest());
-    axios.get('http://localhost:9090/api/users').then(res=>{
-      dispatch(getUsersSuccess(res));
+    axios.get('http://localhost:9090/api/usersAll').then(res=>{
+      dispatch(getUsersSuccess(res.data));
     }).catch((error)=>{
       dispatch(getUsersFailure(error));
     });
@@ -31,6 +31,6 @@ export const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
 export function getUsersSuccess(res) {
   return {
     type: GET_USERS_SUCCESS,
-    payload:res.data.users
+    payload:res
   };
 };

@@ -1,9 +1,9 @@
 require('dotenv').config();
+const massive = require('massive');
 const express= require('express');
 const app = express();
 const cors = require('cors')
 const port = process.env.PORT || 9090;
-const { Client } = require('pg');
 
 // Destructure env file.
 // const {SERVER_PORT} = process.env;
@@ -14,24 +14,19 @@ const {
   DATABASE_PORT ,
   DATABASE_NAME 
 } = process.env
-console.log( {DATABASE_USER})
 
 // Connect to Database.
-
-const client = new Client({
+const client = {
   user: DATABASE_USER,
   password: DATABASE_PASSWORD,
   host: DATABASE_HOST,
   port: DATABASE_PORT,
   database: DATABASE_NAME,
-});
+};
 
-client.connect()
-.then(() => console.log("connected -----------"))
-.then(() => client.query("select * from users"))
-.then((results) => console.log("results from query", {r:results.rows}))
-.catch(e=> console.log("error ----------", e))
-.finally(()=>client.end());
+massive(client)
+.then((db)=>{console.log("Database Connected"); app.set('db', db) })
+.catch((err)=>{console.log(err)})
 
 // Middleware import.
 const bodyParser= require('body-parser');
@@ -40,6 +35,10 @@ const bodyParser= require('body-parser');
 app.use( express.static( `${__dirname}/../build` ) );
 app.use(cors());
 app.use(bodyParser.json());
+
+// test controller
+
+// app.get('/api/testq', );
 
 
 // Controller imports.
@@ -50,6 +49,8 @@ const users_controller = require('./controllers/users_controller');
 app.get('/api/test', test_controller.get);
 
 app.get('/api/users', users_controller.get);
+app.get('/api/usersAll', users_controller.getUsersAll);
+app.get('/api/usersByName', users_controller.getUsersByName);
 app.post('/api/users', users_controller.post);
 
 // Run Server.
