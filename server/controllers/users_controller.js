@@ -1,5 +1,3 @@
-const users = require( '../dummyData/users.json');
-
 module.exports={
   get:(req, res, next)=>{
     const db = req.app.get('db');
@@ -18,8 +16,6 @@ module.exports={
   },
   put:(req, res, next)=>{
     // on posts get data from req.body
-    console.log({req:req.body})
-
     const db = req.app.get('db');
     cosnt = { updateName, id } = req.body;
     db.update_user_name([updateName, id])

@@ -48,14 +48,6 @@ export const PageAddUser = (props) => {
     setIsEdit(!isEdit);
   }
 
-  const renderUsers = () => {
-    return props.users.map((user, i)=>(
-    <div className="user"  key={i} style={{ display:'flex', justifyContent:'space-between' }}> 
-      <div onClick={handleSelectUser} data-id={user.id} style={{ width:'100%' }} > {user.user_name} </div>
-      <button onClick={handleDeleteUser} value={user.id}>Delete</button>
-    </div>));
-  };
-
   const handleCancel=()=>{
     handleToggleEdit();
   }
@@ -70,33 +62,43 @@ export const PageAddUser = (props) => {
     });
   }
 
+  const renderUsers = () => {
+    return props.users.map((user, i)=>(
+    <div className="user"  key={i} style={{ display:'flex', justifyContent:'space-between', margin:"2px 0px"}}> 
+      <div onClick={handleSelectUser} data-id={user.id} style={{ width:'100%' }} > {user.user_name} </div>
+      <button onClick={handleDeleteUser} value={user.id}>Delete</button>
+    </div>));
+  };
+
   return (
     <div className="PageAddUser" style={{display:"flex", flexDirection:"column", maxWidth:"200px", margin:"auto"}}>
       <div className="user-card" style={{border:"2px solid black", margin:"10px 0px", padding:"10px"}}>
         <div>Selected User</div>
         {isEdit?
           <div>
-          <input type="text" className="update-user-name" value={updateName} onChange={(e)=>setUpdateName(e.target.value)}/>
-            <button onClick={handleCancel}>Cancel</button>
-            <button onClick={handleSave}>Save</button>
+            <input type="text" className="update-user-name" value={updateName} onChange={(e)=>setUpdateName(e.target.value)}/>
+            <div style={{display:"flex", justifyContent:"space-between", margin:"10px"}}>
+              <button onClick={handleCancel}>Cancel</button>
+              <button onClick={handleSave}>Save</button>
+            </div>
           </div>
           :
           <div>
             <div>{selectedUser.user_name}</div>
-            <button onClick={handleToggleEdit}>Edit</button>
+            { selectedUser.user_name ?  <button onClick={handleToggleEdit}>Edit</button>: null}
           </div>
         }
       </div>
       <label htmlFor="name">Name</label>
-      <input type="text" className="name" value={name} onChange={(e)=>setName(e.target.value)}/>
+      <input type="text" className="name" value={name} onChange={(e)=>setName(e.target.value)} style={{margin:"5px 0px"}}/>
 
       <button onClick={handleAddUser}>Add User</button>
 
       <label htmlFor="find-user">Find User by Name</label>
-      <input type="text" className="find-user" value={findUser} onChange={(e)=>setFindUser(e.target.value)}/>
+      <input type="text" className="find-user" value={findUser} onChange={(e)=>setFindUser(e.target.value)} style={{margin:"5px 0px"}}/>
 
       <button onClick={handleGetUsersByName}>Get Users By Name</button>
-      <button onClick={()=>console.log(props)}>LogProps</button>
+      <button style={{margin:"5px 0px"}} onClick={()=>console.log(props)}>LogProps</button>
 
       {renderUsers()}
     </div>
