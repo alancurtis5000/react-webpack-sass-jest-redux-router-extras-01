@@ -52,6 +52,7 @@ app.get('/api/users', users_controller.get);
 app.get('/api/usersAll', users_controller.getUsersAll);
 app.get('/api/usersByName', users_controller.getUsersByName);
 app.post('/api/users', users_controller.post);
+app.delete('/api/users', users_controller.delete);
 
 // Run Server.
 app.listen(port, ()=>console.log(`running on port: ${port}`));

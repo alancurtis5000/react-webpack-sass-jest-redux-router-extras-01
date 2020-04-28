@@ -7,17 +7,27 @@ module.exports={
     setTimeout(()=>{ res.status(200).send(users) }, 1500)
   },
   post:(req, res, next)=>{
-    // add user to list of users
-    console.log("post", req.body);
-    res.status(200).send(users);
+    // on posts get data from req.body
+    const db = req.app.get('db');
+    db.add_new_user([req.body.name])
+    .then(dbResponse => { res.status(200).send(dbResponse) })
+    .catch((err)=>console.log(err))
+  },
+  delete:(req, res, next)=>{
+    // on deletes have to use req.query
+    const db = req.app.get('db');
+    let id = parseInt(req.query.id);
+    db.delete_user([id])
+    .then(dbResponse => { res.status(200).send(dbResponse) })
+    .catch((err)=>console.log(err))
   },
   getUsersAll:(req, res, next)=>{
     const db = req.app.get('db');
-    setTimeout(()=>{
+    // setTimeout(()=>{
     db.get_all_users([])
     .then(dbResponse => { res.status(200).send(dbResponse) })
     .catch((err)=>console.log(err))
-    }, 1500)
+    // }, 1500)
   },
   getUsersByName:(req, res, next)=>{
     const db = req.app.get('db');
