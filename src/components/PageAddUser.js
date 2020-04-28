@@ -6,6 +6,7 @@ import find from 'lodash/find';
 
 export const PageAddUser = (props) => {
   const [name, setName] =  useState('');
+  const [updateName, setUpdateName] =  useState('');
   const [findUser, setFindUser] =  useState('');
   const [isEdit, setIsEdit] =  useState(false);
   const [selectedUser, setSelectedUser] =  useState({});
@@ -15,24 +16,8 @@ export const PageAddUser = (props) => {
     props.startGetUsers();
   }, []);
 
-  const handlePingServer=()=>{
-    console.log("handlePingServer");
-    axios.get('http://localhost:9090/api/users').then(res=>{
-      console.log({res})
-    });
-  }
-
-  const handlePingUsers=()=>{
-    props.startGetUsers();
-  };
-
   const handleGetUsersByName=()=>{
        axios.get('http://localhost:9090/api/usersByName').then(res=>{
-      console.log({res})
-    });
-  };
-  const handleGetAllUsers=()=>{
-       axios.get('http://localhost:9090/api/usersAll').then(res=>{
       console.log({res})
     });
   };
@@ -40,7 +25,6 @@ export const PageAddUser = (props) => {
   const handleAddUser=()=>{
     const body = {name};
     axios.post('http://localhost:9090/api/users', body).then(res=>{
-      console.log({res})
       props.startGetUsers();
       setName("");
     });
@@ -48,27 +32,15 @@ export const PageAddUser = (props) => {
 
   const handleDeleteUser=(e)=>{
     let id = e.target.value;
-    console.log("handleDeleteUser", id);
- 
     const params = {id};
     axios.delete('http://localhost:9090/api/users', {params}).then(res=>{
-      console.log({res})
       props.startGetUsers();
     });
-  };
-
-  const handleUpdateUser=()=>{
-    console.log("handleUpdateUser");
-    // const body = {name};
-    // axios.delete('http://localhost:9090/api/users', body).then(res=>{
-    //   console.log({res})
-    // });
   };
 
   const handleSelectUser=( e )=>{
     let id = e.target.dataset.id * 1;
     let user = find(props.users, {id});
-    console.log("handleSelectUser", id, {user, users:props.users});
     setSelectedUser(user);
   }
 
@@ -89,7 +61,13 @@ export const PageAddUser = (props) => {
   }
 
   const handleSave=()=>{
-    handleToggleEdit()
+    handleToggleEdit();
+    setSelectedUser({});
+    const body = {updateName, id:selectedUser.id};
+    axios.put('http://localhost:9090/api/users', body ).then(res=>{
+      setUpdateName('');
+      props.startGetUsers();
+    });
   }
 
   return (
@@ -98,7 +76,7 @@ export const PageAddUser = (props) => {
         <div>Selected User</div>
         {isEdit?
           <div>
-            <input type="text"/>
+          <input type="text" className="update-user-name" value={updateName} onChange={(e)=>setUpdateName(e.target.value)}/>
             <button onClick={handleCancel}>Cancel</button>
             <button onClick={handleSave}>Save</button>
           </div>
@@ -118,10 +96,8 @@ export const PageAddUser = (props) => {
       <input type="text" className="find-user" value={findUser} onChange={(e)=>setFindUser(e.target.value)}/>
 
       <button onClick={handleGetUsersByName}>Get Users By Name</button>
-      <button onClick={handleGetAllUsers}>Get All Users</button>
-      <button onClick={handlePingUsers}>Ping Users</button>
       <button onClick={()=>console.log(props)}>LogProps</button>
-      <button onClick={handlePingServer}>Ping server</button>
+
       {renderUsers()}
     </div>
   )

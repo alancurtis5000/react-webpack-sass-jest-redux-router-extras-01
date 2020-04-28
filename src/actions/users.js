@@ -3,7 +3,7 @@ import axios from 'axios'
 export const startGetUsers = () => {
   return dispatch => {
     dispatch(getUsersRequest());
-    axios.get('http://localhost:9090/api/usersAll').then(res=>{
+    axios.get('http://localhost:9090/api/users').then(res=>{
       dispatch(getUsersSuccess(res.data));
     }).catch((error)=>{
       dispatch(getUsersFailure(error));

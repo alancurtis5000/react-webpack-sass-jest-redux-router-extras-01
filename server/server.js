@@ -36,11 +36,6 @@ app.use( express.static( `${__dirname}/../build` ) );
 app.use(cors());
 app.use(bodyParser.json());
 
-// test controller
-
-// app.get('/api/testq', );
-
-
 // Controller imports.
 const test_controller = require('./controllers/test_controller');
 const users_controller = require('./controllers/users_controller');
@@ -49,9 +44,9 @@ const users_controller = require('./controllers/users_controller');
 app.get('/api/test', test_controller.get);
 
 app.get('/api/users', users_controller.get);
-app.get('/api/usersAll', users_controller.getUsersAll);
 app.get('/api/usersByName', users_controller.getUsersByName);
 app.post('/api/users', users_controller.post);
+app.put('/api/users', users_controller.put);
 app.delete('/api/users', users_controller.delete);
 
 // Run Server.

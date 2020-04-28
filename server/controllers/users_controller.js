@@ -2,14 +2,27 @@ const users = require( '../dummyData/users.json');
 
 module.exports={
   get:(req, res, next)=>{
-    // return list of users.
-    // note using set timeout to simulate slow connection.
-    setTimeout(()=>{ res.status(200).send(users) }, 1500)
+    const db = req.app.get('db');
+    // setTimeout(()=>{
+    db.get_all_users([])
+    .then(dbResponse => { res.status(200).send(dbResponse) })
+    .catch((err)=>console.log(err))
+    // }, 1500)
   },
   post:(req, res, next)=>{
     // on posts get data from req.body
     const db = req.app.get('db');
     db.add_new_user([req.body.name])
+    .then(dbResponse => { res.status(200).send(dbResponse) })
+    .catch((err)=>console.log(err))
+  },
+  put:(req, res, next)=>{
+    // on posts get data from req.body
+    console.log({req:req.body})
+
+    const db = req.app.get('db');
+    cosnt = { updateName, id } = req.body;
+    db.update_user_name([updateName, id])
     .then(dbResponse => { res.status(200).send(dbResponse) })
     .catch((err)=>console.log(err))
   },
@@ -20,14 +33,6 @@ module.exports={
     db.delete_user([id])
     .then(dbResponse => { res.status(200).send(dbResponse) })
     .catch((err)=>console.log(err))
-  },
-  getUsersAll:(req, res, next)=>{
-    const db = req.app.get('db');
-    // setTimeout(()=>{
-    db.get_all_users([])
-    .then(dbResponse => { res.status(200).send(dbResponse) })
-    .catch((err)=>console.log(err))
-    // }, 1500)
   },
   getUsersByName:(req, res, next)=>{
     const db = req.app.get('db');
