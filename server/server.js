@@ -2,7 +2,14 @@ require('dotenv').config();
 const massive = require('massive');
 const express= require('express');
 const app = express();
-const cors = require('cors')
+const cors = require('cors');
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+if ( process.env.NODE_ENV === 'test' ){
+  require('dotenv').config({path: '.env.test'});
+} else if (process.env.NODE_ENV === 'development'){
+  require('dotenv').config({path: '.env.development'});
+}
 const port = process.env.PORT || 9090;
 
 // Destructure env file.
