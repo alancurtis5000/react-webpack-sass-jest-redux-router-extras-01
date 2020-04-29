@@ -7,8 +7,10 @@ const cors = require('cors');
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 if ( process.env.NODE_ENV === 'test' ){
   require('dotenv').config({path: '.env.test'});
+  console.log("---- im in test mode ------------------")
 } else if (process.env.NODE_ENV === 'development'){
   require('dotenv').config({path: '.env.development'});
+  console.log("---- im in dev mode ------------------")
 }
 const port = process.env.PORT || 9090;
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { startGetUsers } from '../actions/users';
 import find from 'lodash/find';
-import { checkAndGenerate } from '../helpers/utils';
+import { checkAndGenerate, printTitle } from '../helpers/utils';
 
 export const PageAddUser = (props) => {
   const [name, setName] =  useState('');
@@ -15,6 +15,7 @@ export const PageAddUser = (props) => {
   useEffect(() => {
     // only run once on mount.
     props.startGetUsers();
+    printTitle();
   }, []);
 
   const handleGetUsersByName=()=>{
@@ -65,6 +66,11 @@ export const PageAddUser = (props) => {
       setUpdateName('');
       props.startGetUsers();
     });
+  }
+
+  const handlePrintTitle=()=>{
+    
+    console.log()
   }
 
   const renderUsers = () => {
