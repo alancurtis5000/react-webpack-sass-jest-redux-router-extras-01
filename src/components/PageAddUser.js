@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { startGetUsers } from '../actions/users';
 import find from 'lodash/find';
+import { checkAndGenerate } from '../helpers/utils';
 
 export const PageAddUser = (props) => {
   const [name, setName] =  useState('');
@@ -52,6 +53,10 @@ export const PageAddUser = (props) => {
     handleToggleEdit();
   }
 
+  const handleGreeting=()=>{
+     console.log(checkAndGenerate(selectedUser.user_name))
+  }
+
   const handleSave=()=>{
     handleToggleEdit();
     setSelectedUser({});
@@ -99,6 +104,7 @@ export const PageAddUser = (props) => {
 
       <button onClick={handleGetUsersByName}>Get Users By Name</button>
       <button style={{margin:"5px 0px"}} onClick={()=>console.log(props)}>LogProps</button>
+      <button style={{margin:"5px 0px"}} onClick={handleGreeting}>greeting</button>
 
       {renderUsers()}
     </div>
