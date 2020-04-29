@@ -69,7 +69,7 @@ export const PageAddUser = (props) => {
 
   const renderUsers = () => {
     return props.users.map((user, i)=>(
-    <div className="user"  key={i} style={{ display:'flex', justifyContent:'space-between', margin:"2px 0px"}}> 
+    <div className="user-item"  key={i} style={{ display:'flex', justifyContent:'space-between', margin:"2px 0px"}}> 
       <div onClick={handleSelectUser} data-id={user.id} style={{ width:'100%' }} > {user.user_name} </div>
       <button onClick={handleDeleteUser} value={user.id}>Delete</button>
     </div>));
@@ -95,9 +95,9 @@ export const PageAddUser = (props) => {
         }
       </div>
       <label htmlFor="name">Name</label>
-      <input type="text" className="name" value={name} onChange={(e)=>setName(e.target.value)} style={{margin:"5px 0px"}}/>
+      <input type="text" className="name" id="name" value={name} onChange={(e)=>setName(e.target.value)} style={{margin:"5px 0px"}}/>
 
-      <button onClick={handleAddUser}>Add User</button>
+      <button id="btnAddUser" onClick={handleAddUser}>Add User</button>
 
       <label htmlFor="find-user">Find User by Name</label>
       <input type="text" className="find-user" value={findUser} onChange={(e)=>setFindUser(e.target.value)} style={{margin:"5px 0px"}}/>
@@ -105,8 +105,9 @@ export const PageAddUser = (props) => {
       <button onClick={handleGetUsersByName}>Get Users By Name</button>
       <button style={{margin:"5px 0px"}} onClick={()=>console.log(props)}>LogProps</button>
       <button style={{margin:"5px 0px"}} onClick={handleGreeting}>greeting</button>
-
-      {renderUsers()}
+      <div id="user-list">
+        {renderUsers()}
+      </div>
     </div>
   )
 }

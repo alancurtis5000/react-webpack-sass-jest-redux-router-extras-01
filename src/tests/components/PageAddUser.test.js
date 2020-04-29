@@ -31,26 +31,25 @@ test('should generate greeting after validating text', ()=>{
 // End to End test //
 // WORKING ON GETTING PUPPETEER TO WORK
 
-// test('the data is peanut butter', async () => {
-//   const data = await setTimeout(() => {
-//     return 'peanut butter';
-//   }, 1000);
-//   expect(data).toBe('peanut butter');
-// });
+test('should add user input then click add user button', async () => {
+  const browser = await puppeteer.launch({
+    headless:false,
+    slowMo: 0,
+    args:['--window-size=1920,1080']
+  });
+  const page = await browser.newPage()
+  await page.goto('http://localhost:8080/');
+  await page.click('input#name');
+  await page.type('input#name', 'Anna');
+  await page.click('#btnAddUser');
 
-// test('should click through app', async()=>{
-//   await
-//   expect(false).toBe(false);
-// });
-// test('should click through app', async ()=>{
-//   const browser = await puppeteer.launch({
-//     headless:false,
-//     slowMo: 80,
-//     args:['--window-size=1920,1080']
-//   });
-//   const page = await browser.newPage();
-//   await page.goto(
-//     'http://localhost:8080/'
-//   );
-//   expect(true).toBe(true)
-// });
+  const finalText = await page.$eval('#user-list', el => el.textContent);
+  expect(finalText).toContain('Anna');
+
+  await page.close();
+  await browser.close();
+
+}, 10000);
+
+
+
