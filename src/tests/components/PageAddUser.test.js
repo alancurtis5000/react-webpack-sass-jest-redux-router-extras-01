@@ -29,8 +29,6 @@ test('should generate greeting after validating text', ()=>{
 
 
 // End to End test //
-// WORKING ON GETTING PUPPETEER TO WORK
-
 test('should add user input then click add user button', async () => {
   const browser = await puppeteer.launch({
     headless:false,
