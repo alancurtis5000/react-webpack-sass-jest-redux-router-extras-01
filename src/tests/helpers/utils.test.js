@@ -1,5 +1,3 @@
-// mocking local module.
-jest.mock('../../../http');
 
 import  { generateGreeting, validateInput, checkAndGenerate, loadTitle }  from '../../helpers/utils';
 

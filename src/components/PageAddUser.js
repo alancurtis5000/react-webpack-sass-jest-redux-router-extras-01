@@ -4,6 +4,7 @@ import axios from 'axios';
 import { startGetUsers } from '../actions/users';
 import find from 'lodash/find';
 import { checkAndGenerate, printTitle } from '../helpers/utils';
+import Header from './Header';
 
 export const PageAddUser = (props) => {
   const [name, setName] =  useState('');
@@ -68,9 +69,8 @@ export const PageAddUser = (props) => {
     });
   }
 
-  const handlePrintTitle=()=>{
-    
-    console.log()
+  const handleLog =()=>{
+    console.log("hello")
   }
 
   const renderUsers = () => {
@@ -83,6 +83,7 @@ export const PageAddUser = (props) => {
 
   return (
     <div className="PageAddUser" style={{display:"flex", flexDirection:"column", maxWidth:"200px", margin:"auto"}}>
+      <Header />
       <div className="user-card" style={{border:"2px solid black", margin:"10px 0px", padding:"10px"}}>
         <div>Selected User</div>
         {isEdit?
@@ -114,6 +115,7 @@ export const PageAddUser = (props) => {
       <div id="user-list">
         {renderUsers()}
       </div>
+      <button id="logger" className="cheese" onClick={handleLog}>Logger</button>
     </div>
   )
 }
