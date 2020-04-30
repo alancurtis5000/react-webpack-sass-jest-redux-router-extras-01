@@ -4,5 +4,9 @@
   ],
   "snapshotSerializers": [
     "enzyme-to-json/serializer"
-  ]
+  ],
+  "moduleNameMapper": {
+    "mockData": "<rootDir>/tests/data",
+    "mockService": "<rootDir>/tests/services"
+  }
 }
