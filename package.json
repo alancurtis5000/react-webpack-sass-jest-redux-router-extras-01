@@ -18,7 +18,7 @@
     "babel-plugin-transform-object-rest-spread": "6.26.0",
     "body-parser": "1.19.0",
     "cors": "2.8.5",
-    "express": "4.17.1",
+    "express": "4.17.3",
     "lodash": "4.17.15",
     "massive": "6.3.0",
     "moment": "2.24.0",
